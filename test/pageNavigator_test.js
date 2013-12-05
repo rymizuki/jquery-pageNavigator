@@ -28,9 +28,10 @@
   });
 
   test('is chainable', function() {
-    expect(1);
+    expect(2);
     // Not a bad test to run on collection methods.
     strictEqual(this.elems.pageNavigator(), this.elems, 'should be chainable');
+    strictEqual(this.elems.find('.pager-prev').eq(0).text(), 'prev', 'should be');
   });
 
   module('jQuery.pageNavigator with TotalEntries', {

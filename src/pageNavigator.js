@@ -178,16 +178,42 @@
     PageNavigator.prototype.navigate = function (page) {
       this.pager.setCurrPage(page);
       this.controls.navigate();
+      this.$el.trigger('pn:navigate', [page]);
+    };
+
+    PageNavigator.prototype.next = function () {
+      if (this.pager.nextPage()) {
+        this.navgate(this.pager.nextPage());
+      } else {
+        return null;
+      }
+    };
+    PageNavigator.prototype.prev = function () {
+      if (this.pager.prevPage()) {
+        this.navgate(this.pager.prevPage());
+      } else {
+        return null;
+      }
     };
 
     return PageNavigator;
   })($);
 
   // Collection method.
-  $.fn.pageNavigator = function() {
-    return this.each(function(i) {
-      // Do something awesome to each selected element.
-      $(this).html('awesome' + i);
+  $.fn.pageNavigator = function(method, options) {
+    return this.each(function() {
+      var $this = $(this),
+          data  = $this.data('page-navigator');
+      var opts = typeof method === 'object' ? method : (options || {});
+
+      if (!data) {
+        data = $.pageNavigator($this, opts);
+        $this.data('page-navigator', data);
+      }
+
+      if (method && typeof method === 'string') {
+        data[method]();
+      }
     });
   };
 
