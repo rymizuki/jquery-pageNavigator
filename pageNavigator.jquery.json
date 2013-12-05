@@ -1,0 +1,26 @@
+{
+  "name": "pageNavigator",
+  "title": "pageNavigator",
+  "description": "The best jQuery plugin ever.",
+  "version": "0.0.1",
+  "homepage": "https://github.com/mizuki/jquery-page-navigator",
+  "author": {
+    "name": "mizuki_r",
+    "email": "ry.mizuki@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mizuki/jquery-page-navigator.git"
+  },
+  "bugs": "https://github.com/mizuki/jquery-page-navigator/issues",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/mizuki/jquery-page-navigator/blob/master/LICENSE-MIT"
+    }
+  ],
+  "dependencies": {
+    "jquery": "*"
+  },
+  "keywords": []
+}
