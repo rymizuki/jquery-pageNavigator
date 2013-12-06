@@ -1,4 +1,4 @@
-/*! pageNavigator - v0.0.1 - 2013-12-06
+/*! pageNavigator - v0.0.2 - 2013-12-06
 * https://github.com/mizuki/jquery-page-navigator
 * Copyright (c) 2013 mizuki_r; Licensed MIT */
 (function($) {
@@ -38,13 +38,17 @@
     var Controls = function ($el, pager, options) {
       this.$el = $el;
 
+      // pager object
       this.pager = pager;
+
+      // ul's class name
+      this.class = options.class;
 
       this.prev_text = options.prev_text;
       this.next_text = options.next_text;
     };
     Controls.prototype.render = function () {
-      var $container = $('<ul>')
+      var $container = $('<ul>').addClass(this.class)
         .append(this.renderPrev())
         .append(this.renderCurr())
         .append(this.renderNext());
@@ -166,14 +170,19 @@
       // render control elements.
       this.controls = new Controls(this.$el, this.pager, this.opts.controls);
       if (this.opts.is_render_controls) {
-        this.controls.render();
+        this.render();
       }
+    };
+
+    PageNavigator.prototype.render = function () {
+      this.controls.render();
+        this.$el.trigger('pn:navigate', [this, this.pager.currPage()]);
     };
 
     PageNavigator.prototype.navigate = function (page) {
       this.pager.setCurrPage(page);
       this.controls.navigate();
-      this.$el.trigger('pn:navigate', [page]);
+      this.$el.trigger('pn:navigate', [this, page]);
     };
 
     PageNavigator.prototype.next = function () {
@@ -222,6 +231,7 @@
   $.pageNavigator.options = {
     "is_render_controls": true,
     "controls": {
+      "class": null,
       "prev_text": 'prev',
       "next_text": 'next'
     }
