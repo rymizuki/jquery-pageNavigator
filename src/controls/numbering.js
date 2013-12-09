@@ -22,14 +22,18 @@ PageNavigator.controls.Numbering = (function ($, util, Simple) {
       links.push(this.makeControl(cnt, {class: label_class, href: this.uri_with({page: cnt})}));
     }
     if (start > this.pager.firstPage()) {
-      links.unshift(this.makeControl('...', {class: 'pager-divider disabled'}));
+      if (start > (this.pager.firstPage() + this.link_num_step)) {
+        links.unshift(this.makeControl('...', {class: 'pager-divider disabled'}));
+      }
       links.unshift(this.makeControl(this.pager.firstPage(), {
         class: 'pager-label',
         href : this.uri_with({page: this.pager.firstPage()})
       }));
     }
     if (end < this.pager.lastPage()) {
-      links.push(this.makeControl('...', {class: 'pager-divider disabled'}));
+      if (end < (this.pager.lastPage() - this.link_num_step)) {
+        links.push(this.makeControl('...', {class: 'pager-divider disabled'}));
+      }
       links.push(this.makeControl(this.pager.lastPage(), {
         class: 'pager-label',
         href : this.uri_with({page: this.pager.lastPage()})
