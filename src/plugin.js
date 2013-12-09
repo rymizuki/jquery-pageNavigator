@@ -5,12 +5,19 @@
   $.fn.pageNavigator = function(method, options) {
     return this.each(function() {
       var $this = $(this),
-          data  = $this.data('page-navigator');
-      var opts = typeof method === 'object' ? method : (options || {});
+          data  = $this.data('page-navigator.data-api'),
+          opts;
+
+      if (typeof method === 'object') {
+        opts   = method;
+        method = null;
+      } else {
+        opts = options || {};
+      }
 
       if (!data) {
         data = $.pageNavigator($this, opts);
-        $this.data('page-navigator', data);
+        $this.data('page-navigator.data-api', data);
       }
 
       if (method && typeof method === 'string') {

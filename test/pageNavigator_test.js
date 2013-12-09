@@ -101,4 +101,43 @@
     ok(!this.elem.find('.pager-prev').hasClass('disabled'), 'should not be disable class');
     ok(this.elem.find('.pager-next').hasClass('disabled'), 'should be disable class');
   });
+
+  module('jQuery.pageNavigator with data-api', {
+    setup: function () {
+      this.elem = $('<nav/>', {
+        "data-total-entries":    100,
+        "data-entries-per-page":  20,
+        "data-current-page":       1
+      }).pageNavigator();
+      this.nav = this.elem.data('page-navigator.data-api');
+    },
+  });
+
+  test('is construction with options', function () {
+    strictEqual(this.nav.pager.total_entries, 100, 'should be total_entries is 100');
+    strictEqual(this.nav.pager.entries_per_page, 20, 'should be current_page is 20');
+    strictEqual(this.nav.pager.current_page, 1, 'should be current_page is 1');
+  });
+
+  test('is allowed page access', function () {
+    strictEqual(this.nav.pager.currPage(), 1, 'should be curr_page is 1');
+    strictEqual(this.nav.pager.nextPage(), 2, 'should be next_page is 2');
+    strictEqual(this.nav.pager.prevPage(), null, 'should be prev_page is null');
+    strictEqual(this.nav.pager.lastPage(), 5, 'should be last_page is 20');
+  });
+
+  test('is created controls', function () {
+    strictEqual(this.elem.find('.pager-prev').text(), 'prev', 'should be prev element');
+    strictEqual(this.elem.find('.pager-curr').text(), '1',    'should be curr element');
+    strictEqual(this.elem.find('.pager-next').text(), 'next', 'should be next element');
+  });
+
+  test('is prev-link', function () {
+    ok(this.elem.find('.pager-prev').hasClass('disabled'), 'should be prev page is disabled');
+  });
+
+  test('is href attribute on', function () {
+    strictEqual(this.elem.find('.pager-prev').attr('href'), undefined,  'should be null');
+    ok(this.elem.find('.pager-next').attr('href').match(/page=2/), 'should be "/?page=2"');
+  });
 }(jQuery));

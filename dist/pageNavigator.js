@@ -1,4 +1,4 @@
-/*! pageNavigator - v0.0.3 - 2013-12-07
+/*! pageNavigator - v0.0.4 - 2013-12-09
 * https://github.com/mizuki/jquery-page-navigator
 * Copyright (c) 2013 mizuki_r; Licensed MIT */
 var PageNavigator = (function ($) {
@@ -14,9 +14,9 @@ var PageNavigator = (function ($) {
 
     // set pager
     this.pager = new PageNavigator.Pager({
-      "total_entries":    options.total_entries,
-      "entries_per_page": options.entries_per_page,
-      "current_page":     options.current_page
+      "total_entries":    this.$el.attr('data-total-entries')    || options.total_entries,
+      "entries_per_page": this.$el.attr('data-entries-per-page') || options.entries_per_page,
+      "current_page":     this.$el.attr('data-current-page')     || options.current_page
     });
 
     // render control elements.
@@ -310,12 +310,19 @@ PageNavigator.controls.Numbering = (function ($, util, Simple) {
   $.fn.pageNavigator = function(method, options) {
     return this.each(function() {
       var $this = $(this),
-          data  = $this.data('page-navigator');
-      var opts = typeof method === 'object' ? method : (options || {});
+          data  = $this.data('page-navigator.data-api'),
+          opts;
+
+      if (typeof method === 'object') {
+        opts   = method;
+        method = null;
+      } else {
+        opts = options || {};
+      }
 
       if (!data) {
         data = $.pageNavigator($this, opts);
-        $this.data('page-navigator', data);
+        $this.data('page-navigator.data-api', data);
       }
 
       if (method && typeof method === 'string') {

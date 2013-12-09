@@ -11,9 +11,9 @@ var PageNavigator = (function ($) {
 
     // set pager
     this.pager = new PageNavigator.Pager({
-      "total_entries":    options.total_entries,
-      "entries_per_page": options.entries_per_page,
-      "current_page":     options.current_page
+      "total_entries":    this.$el.attr('data-total-entries')    || options.total_entries,
+      "entries_per_page": this.$el.attr('data-entries-per-page') || options.entries_per_page,
+      "current_page":     this.$el.attr('data-current-page')     || options.current_page
     });
 
     // render control elements.
