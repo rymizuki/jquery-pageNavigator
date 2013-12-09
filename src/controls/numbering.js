@@ -4,8 +4,7 @@ PageNavigator.controls.Numbering = (function ($, util, Simple) {
   // extend ths Simple class.
   var Numbering = function ($el, pager, options) {
     Simple.apply(this, [$el, pager, options]);
-    this.numbers_length = options.length || 3;
-    this.link_num_step = 2;
+    this.link_num_step = options.number_step || 2;
   };
   Numbering.prototype = Object.create(Simple.prototype);
   Numbering.prototype.constructor = Simple;
