@@ -1,4 +1,4 @@
-/*! pageNavigator - v0.0.4 - 2013-12-09
+/*! pageNavigator - v0.0.5 - 2013-12-09
 * https://github.com/mizuki/jquery-page-navigator
 * Copyright (c) 2013 mizuki_r; Licensed MIT */
 var PageNavigator = (function ($) {
@@ -308,17 +308,17 @@ PageNavigator.controls.Numbering = (function ($, util, Simple) {
 
   // Collection method.
   $.fn.pageNavigator = function(method, options) {
+    var opts;
+    if (typeof method === 'object') {
+      opts   = method;
+      method = null;
+    } else {
+      opts = options || {};
+    }
+
     return this.each(function() {
       var $this = $(this),
-          data  = $this.data('page-navigator.data-api'),
-          opts;
-
-      if (typeof method === 'object') {
-        opts   = method;
-        method = null;
-      } else {
-        opts = options || {};
-      }
+          data  = $this.data('page-navigator.data-api');
 
       if (!data) {
         data = $.pageNavigator($this, opts);

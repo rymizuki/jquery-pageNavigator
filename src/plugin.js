@@ -3,17 +3,17 @@
 
   // Collection method.
   $.fn.pageNavigator = function(method, options) {
+    var opts;
+    if (typeof method === 'object') {
+      opts   = method;
+      method = null;
+    } else {
+      opts = options || {};
+    }
+
     return this.each(function() {
       var $this = $(this),
-          data  = $this.data('page-navigator.data-api'),
-          opts;
-
-      if (typeof method === 'object') {
-        opts   = method;
-        method = null;
-      } else {
-        opts = options || {};
-      }
+          data  = $this.data('page-navigator.data-api');
 
       if (!data) {
         data = $.pageNavigator($this, opts);
