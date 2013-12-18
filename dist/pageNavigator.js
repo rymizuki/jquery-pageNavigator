@@ -1,4 +1,4 @@
-/*! pageNavigator - v0.0.7 - 2013-12-18
+/*! pageNavigator - v0.0.8 - 2013-12-18
 * https://github.com/mizuki/jquery-page-navigator
 * Copyright (c) 2013 mizuki_r; Licensed MIT */
 var PageNavigator = (function ($) {
