@@ -37,7 +37,7 @@
     "is_render_controls": true,
     "extension": "Simple",
     "controls": {
-      "class":    null,
+      "classes":  null,
       "uri_with": null,
       "prev_text": 'prev',
       "next_text": 'next'

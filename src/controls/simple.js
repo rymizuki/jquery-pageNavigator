@@ -7,8 +7,8 @@ PageNavigator.controls.Simple = (function ($, util) {
     // pager object
     this.pager = pager;
 
-    // ul's class nam, utile
-    this.class = options.class;
+    // ul's classes nam, utile
+    this.classes = options.classes;
 
     // uri make function
     this.uri_with = options.uri_with || util.uri_with;
@@ -17,7 +17,7 @@ PageNavigator.controls.Simple = (function ($, util) {
     this.next_text = options.next_text;
   };
   Controls.prototype.render = function () {
-    var $container = $('<ul>').addClass(this.class)
+    var $container = $('<ul>').addClass(this.classes)
       .append(this.renderPrev())
       .append(this.renderCurr())
       .append(this.renderNext());
@@ -44,19 +44,19 @@ PageNavigator.controls.Simple = (function ($, util) {
   };
   Controls.prototype.renderCurr = function () {
     return this.makeControl(this.pager.currPage(), {
-      "class": 'pager-curr',
+      "classes": 'pager-curr',
       "href": this.uri_with({"page": this.pager.currPage()})
     });
   };
   Controls.prototype.renderPrev = function () {
     return this.makeControl(this.prev_text, {
-      "class": 'pager-prev',
+      "classes": 'pager-prev',
       'href': this.uri_with({"page": this.pager.prevPage()})
     });
   };
   Controls.prototype.renderNext = function () {
     return this.makeControl(this.next_text, {
-      "class": 'pager-next',
+      "classes": 'pager-next',
       'href': this.uri_with({"page": this.pager.nextPage()})
     });
   };

@@ -1,7 +1,7 @@
 PageNavigator.controls.Numbering = (function ($, util, Simple) {
   'use strict';
 
-  // extend ths Simple class.
+  // extend ths Simple classes.
   var Numbering = function ($el, pager, options) {
     Simple.apply(this, [$el, pager, options]);
     this.link_num_step = options.number_step || 2;
@@ -17,25 +17,25 @@ PageNavigator.controls.Numbering = (function ($, util, Simple) {
 
     var links = [];
     for (var cnt = start; cnt <= end; cnt++) {
-      var label_class = 'pager-label';
-      if (this.pager.currPage() === cnt) { label_class += ' active'; }
-      links.push(this.makeControl(cnt, {class: label_class, href: this.uri_with({page: cnt})}));
+      var label_classes = 'pager-label';
+      if (this.pager.currPage() === cnt) { label_classes += ' active'; }
+      links.push(this.makeControl(cnt, {classes: label_classes, href: this.uri_with({page: cnt})}));
     }
     if (start > this.pager.firstPage()) {
       if (start > (this.pager.firstPage() + this.link_num_step)) {
-        links.unshift(this.makeControl('...', {class: 'pager-divider disabled'}));
+        links.unshift(this.makeControl('...', {classes: 'pager-divider disabled'}));
       }
       links.unshift(this.makeControl(this.pager.firstPage(), {
-        class: 'pager-label',
+        classes: 'pager-label',
         href : this.uri_with({page: this.pager.firstPage()})
       }));
     }
     if (end < this.pager.lastPage()) {
       if (end < (this.pager.lastPage() - this.link_num_step)) {
-        links.push(this.makeControl('...', {class: 'pager-divider disabled'}));
+        links.push(this.makeControl('...', {classes: 'pager-divider disabled'}));
       }
       links.push(this.makeControl(this.pager.lastPage(), {
-        class: 'pager-label',
+        classes: 'pager-label',
         href : this.uri_with({page: this.pager.lastPage()})
       }));
     }
