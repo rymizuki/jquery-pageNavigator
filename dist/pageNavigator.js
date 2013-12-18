@@ -1,4 +1,4 @@
-/*! pageNavigator - v0.0.7 - 2013-12-09
+/*! pageNavigator - v0.0.7 - 2013-12-18
 * https://github.com/mizuki/jquery-page-navigator
 * Copyright (c) 2013 mizuki_r; Licensed MIT */
 var PageNavigator = (function ($) {
@@ -168,8 +168,8 @@ PageNavigator.controls.Simple = (function ($, util) {
     // pager object
     this.pager = pager;
 
-    // ul's class nam, utile
-    this.class = options.class;
+    // ul's classes nam, utile
+    this.classes = options.classes;
 
     // uri make function
     this.uri_with = options.uri_with || util.uri_with;
@@ -178,7 +178,7 @@ PageNavigator.controls.Simple = (function ($, util) {
     this.next_text = options.next_text;
   };
   Controls.prototype.render = function () {
-    var $container = $('<ul>').addClass(this.class)
+    var $container = $('<ul>').addClass(this.classes)
       .append(this.renderPrev())
       .append(this.renderCurr())
       .append(this.renderNext());
@@ -228,7 +228,7 @@ PageNavigator.controls.Simple = (function ($, util) {
 PageNavigator.controls.Numbering = (function ($, util, Simple) {
   'use strict';
 
-  // extend ths Simple class.
+  // extend ths Simple classes.
   var Numbering = function ($el, pager, options) {
     Simple.apply(this, [$el, pager, options]);
     this.link_num_step = options.number_step || 2;
@@ -345,7 +345,7 @@ PageNavigator.controls.Numbering = (function ($, util, Simple) {
     "is_render_controls": true,
     "extension": "Simple",
     "controls": {
-      "class":    null,
+      "classes":  null,
       "uri_with": null,
       "prev_text": 'prev',
       "next_text": 'next'

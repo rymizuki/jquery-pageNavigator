@@ -44,19 +44,19 @@ PageNavigator.controls.Simple = (function ($, util) {
   };
   Controls.prototype.renderCurr = function () {
     return this.makeControl(this.pager.currPage(), {
-      "classes": 'pager-curr',
+      "class": 'pager-curr',
       "href": this.uri_with({"page": this.pager.currPage()})
     });
   };
   Controls.prototype.renderPrev = function () {
     return this.makeControl(this.prev_text, {
-      "classes": 'pager-prev',
+      "class": 'pager-prev',
       'href': this.uri_with({"page": this.pager.prevPage()})
     });
   };
   Controls.prototype.renderNext = function () {
     return this.makeControl(this.next_text, {
-      "classes": 'pager-next',
+      "class": 'pager-next',
       'href': this.uri_with({"page": this.pager.nextPage()})
     });
   };
